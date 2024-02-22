@@ -1,0 +1,86 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+#logincont{
+ 
+    padding-left:25vw;
+    background-color:black;
+    margin-top:10vh;
+
+}
+#login{
+   
+    width:30vw;
+}
+
+
+#register{
+    color:white;
+    text-decoration:none;
+}
+
+#logo{
+    width:120px;
+    height:120px;
+    margin-left:10vw;
+    border-radius:100px;
+    background-color:yellowgreen;
+    
+    
+}
+
+#logo2 {
+    width: 120px;
+    height: 120px;
+    margin-left: 34vw;
+    border-radius: 100px;
+    background-color: yellowgreen;
+    margin-top:20vh;
+}
+#register-btn {
+    background-color: #EA7215;
+    color: white;
+}
+#login-submit {
+    background-color: #eadd15;
+    color: white;
+}
+
+#register-cont {
+    width: 30vw;
+    height:75vh;
+    margin-top: 10vh;
+    margin-left: 24vw;
+   // background-color:black;
+}
+
+#confirm {
+    width: 30vw;
+    background-color: green;
+    color: white;
+    margin-left: 20vw;
+    margin-top: 10vh;
+    border-radius:20px;
+}
+body{
+    //background-color:red;
+}

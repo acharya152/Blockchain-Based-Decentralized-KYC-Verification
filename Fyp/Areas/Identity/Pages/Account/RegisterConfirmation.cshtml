@@ -1,0 +1,13 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    if (Model.DisplayConfirmAccountLink)
+    {
+       <p> This should not have been displayed.</p>
+    }
+    else
+    {
+        TempData["Message"] = "Please check your email to confirm your account.";
+        <script>window.location.href = '@Url.Page("/Identity/Account/Login")';</script>
+    }
+}
