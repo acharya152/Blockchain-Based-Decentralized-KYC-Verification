@@ -2,9 +2,13 @@
 
 @if (!String.IsNullOrEmpty(Model))
 {
+    <img id="logo3" src="~/icon.png" />
+    <br />
+    <br />
+    
     var statusMessageClass = Model.StartsWith("Error") ? "danger" : "success";
-    <div class="alert alert-@statusMessageClass alert-dismissible" role="alert">
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        @Model
+    <div  id="emailconfirmed"class="alert alert-@statusMessageClass alert-dismissible" role="alert">
+       
+        Your Email has been confirmed,you can now proceed to login and close this  page.
     </div>
 }

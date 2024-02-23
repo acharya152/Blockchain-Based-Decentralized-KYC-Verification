@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using System.Text.Encodings.Web;
 
 namespace Fyp.Areas.Identity.Pages.Account
 {
@@ -60,9 +61,28 @@ namespace Fyp.Areas.Identity.Pages.Account
             }
 
             Email = email;
-            // Once you add a real email sender, you should remove this code that lets you confirm the account
-           // DisplayConfirmAccountLink = true;
-            
+
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
+            // Construct the confirmation link
+            var callbackUrl = Url.Page(
+                "/Account/ConfirmEmail",
+                pageHandler: null,
+                values: new { area = "Identity", userId = user.Id, code = code },
+                protocol: Request.Scheme);
+            try
+            {
+                var obj = new EmailSender();
+                // Send confirmation email
+                await obj.SendEmailAsync(email, "Confirm your email",
+                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                // Once you add a real email sender, you should remove this code that lets you confirm the account
+                // DisplayConfirmAccountLink = true;
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
 
             return Page();
         }

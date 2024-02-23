@@ -31,18 +31,20 @@
                 </div>
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg  ">Log in</button>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-warning  ">Log in</button>
                 </div>
                 <div><br />
-                    @* <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p> *@
-                    <p id="register-btn" class="w-100 btn btn-lg" >
-                        <a id="register" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
+                    
+                
+                    <button id="register-btn" class="w-100 btn btn-lg " type="button" onclick="location.href='./Register?returnUrl=@Model.ReturnUrl'">Register as a new user</button>
+                
+
                     <p>
                         <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
                     </p>
+                <p>
+                    <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                </p>
                 </div>
           
             </form>
