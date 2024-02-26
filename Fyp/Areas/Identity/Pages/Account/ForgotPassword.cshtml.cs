@@ -62,7 +62,7 @@ namespace Fyp.Areas.Identity.Pages.Account
                     return RedirectToPage("./ForgotPasswordConfirmation");
                 }
 
-                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 
                 // Construct the confirmation link

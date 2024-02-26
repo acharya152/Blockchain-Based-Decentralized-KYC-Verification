@@ -82,8 +82,8 @@ namespace Fyp.Areas.Identity.Pages.Account
             {
                 Input = new InputModel
                 {
-                    Code = 
-                    WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code))
+                    Code =
+                     Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code))
                 };
                 return Page();
             }
@@ -102,8 +102,8 @@ namespace Fyp.Areas.Identity.Pages.Account
                 // Don't reveal that the user does not exist
                 return RedirectToPage("./ResetPasswordConfirmation");
             }
-            var code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(Input.Code));
-            var result = await _userManager.ResetPasswordAsync(user,code, Input.Password);
+           // var code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(Input.Code));
+            var result = await _userManager.ResetPasswordAsync(user,Input.Code,Input.Password);
             if (result.Succeeded)
             {
                 return RedirectToPage("./ResetPasswordConfirmation");
