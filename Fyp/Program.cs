@@ -4,9 +4,9 @@ using Fyp.Data;
 using Fyp.Areas.Identity.Data;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("FypContextConnection") ?? throw new InvalidOperationException("Connection string 'FypContextConnection' not found.");
-
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("FypContextConnection")));
 builder.Services.AddDbContext<FypContext>(options => options.UseSqlServer(connectionString));
-builder.Services.AddDefaultIdentity<Fypuser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<FypContext>();
+builder.Services.AddDefaultIdentity<Fypuser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>().AddEntityFrameworkStores<FypContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -36,7 +36,7 @@ app.MapGet("/", ctx =>
     if (ctx.User.Identity.IsAuthenticated)
     {
         // User is already authenticated, redirect to another page
-        ctx.Response.Redirect("/Home/Index");
+        ctx.Response.Redirect("/Kycs/Create");
     }
     else
     {
